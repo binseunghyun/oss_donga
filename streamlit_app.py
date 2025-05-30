@@ -4,8 +4,8 @@ import pandas as pd
 st.set_page_config(layout="wide")
 st.title("🚗 부산시 교통사고 통계 분석 (2023~2024)")
 
-# 데이터 불러오기
-df = pd.read_excel("사고분석-지역별.xlsx")
+# CSV 데이터 불러오기
+df = pd.read_csv("사고분석-지역별.csv", encoding="utf-8-sig")
 
 # 연도 파싱
 df['연도'] = df['발생년월'].astype(str).str[:4].astype(int)
@@ -18,10 +18,11 @@ year = st.selectbox("연도 선택", sorted(df['연도'].unique()))
 type_option = st.selectbox("사고유형 선택", df['사고유형'].unique())
 
 filtered = df[(df['연도'] == year) & (df['사고유형'] == type_option)]
+
+# 디버그용 출력 (원하면 지워도 됨)
 st.write("선택된 연도:", year)
 st.write("선택된 사고유형:", type_option)
 st.write("필터링된 행 수:", len(filtered))
-
 
 st.markdown("---")
 st.header(f"📊 {year}년 {type_option} 사고 분석 결과")
