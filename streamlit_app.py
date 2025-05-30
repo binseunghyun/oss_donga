@@ -18,6 +18,10 @@ year = st.selectbox("연도 선택", sorted(df['연도'].unique()))
 type_option = st.selectbox("사고유형 선택", df['사고유형'].unique())
 
 filtered = df[(df['연도'] == year) & (df['사고유형'] == type_option)]
+st.write("선택된 연도:", year)
+st.write("선택된 사고유형:", type_option)
+st.write("필터링된 행 수:", len(filtered))
+
 
 st.markdown("---")
 st.header(f"📊 {year}년 {type_option} 사고 분석 결과")
